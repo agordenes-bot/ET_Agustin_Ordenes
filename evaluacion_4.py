@@ -93,7 +93,8 @@ def validacion_unidades(unidades):
 def agregar_prenda(codigo,nombre,categoria,talla,color,material,es_unisex,precio,unidades):
     if es_unisex=="s":
         es_unisex=True
-        prendas[codigo]
+        prendas=[codigo][nombre,categoria,talla,color,material,es_unisex]
+        bodega=[codigo][precio,unidades]
     else:
         es_unisex=False
         prendas[codigo][nombre,categoria,talla,color,material,es_unisex]
@@ -181,9 +182,10 @@ def main():
             if not validacion_unidades(unidades):
                 print("Ingrese un numero positivo")
                 continue
-            agregar_prenda(codigo,nombre,categoria,talla,color,material,es_unisex,precio,unidades)
-            print(prendas)
-
+            if agregar_prenda(codigo,nombre,categoria,talla,color,material,es_unisex,precio,unidades):
+                print("Producto agregado correctamente")
+            else:
+                print("Se a cancelado el registro de la prenda")
         elif op_menu==5:
             codigo=input("Ingrese un codigo: ").upper()
             if buscar_codigo(codigo):
